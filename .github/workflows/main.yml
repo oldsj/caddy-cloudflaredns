@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: oldsj/caddy-cloudflaredns
+  IMAGE_NAME: ${{ github.repository }}
   TARGET_PLATFORM: linux/amd64,linux/arm64
 
 jobs:
