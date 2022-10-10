@@ -33,17 +33,17 @@ jobs:
       id: prepare
       run: |
         echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v4
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}      
     - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}      
     - name: Build container and Push
       uses: docker/build-push-action@v3
       with:
